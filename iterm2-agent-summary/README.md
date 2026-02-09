@@ -4,6 +4,9 @@ An [Amp](https://ampcode.com) skill that detects AI coding agents (Amp, Claude C
 
 Ask "what agents are running?" and get a table showing each agent, its status, working directory, and current task.
 
+<img width="800" height="368" alt="image" src="https://github.com/user-attachments/assets/cb6b2c58-b5fc-49a5-9f58-95ec3c7dcfdd" />
+
+
 ## How It Works
 
 An AppleScript (`scripts/detect-agents.sh`) grabs the first and last 50 lines from every iTerm2 tab. The LLM then pattern-matches on known UI elements to identify which agent is running in each tab:

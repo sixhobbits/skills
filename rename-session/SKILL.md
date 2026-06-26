@@ -12,7 +12,7 @@ Lets the agent rename its own Claude Code session — the equivalent of the user
 Run the script with the new name:
 
 ```bash
-scripts/claude-rename.py "<new-name>" [session-id]
+scripts/claude-rename.sh "<new-name>" [session-id]
 ```
 
 - Omit `session-id` to target the current session. The script uses `$CLAUDE_SESSION_ID` if set, otherwise the most recently modified transcript.
@@ -26,7 +26,7 @@ scripts/claude-rename.py "<new-name>" [session-id]
 <local-command-stdout>Session renamed to: NAME</local-command-stdout>
 ```
 
-The `/resume` picker reads the last such line as the session name (last-one-wins). The script appends exactly this event with a fresh UUID, current timestamp, and the transcript's own `sessionId` / `cwd` / `version` / `gitBranch`, chaining `parentUuid` to the previous record.
+The `/resume` picker reads the last such line as the session name (last-one-wins). The script is pure POSIX `sh` with no dependencies: the transcript file *is* the session, so only that one line matters, and the `sessionId` it embeds comes straight from the filename. UUID via `uuidgen` (with `/proc` and timestamp fallbacks); timestamp via `date`.
 
 The pid registry (`~/.claude/sessions/<pid>.json`) holds a `name` field only while the process runs, and the CLI rewrites that file from its own in-memory state — so writing it externally does not stick. The transcript event is the source of truth, which is why this approach is reliable.
 

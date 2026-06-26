@@ -9,9 +9,11 @@ A Claude Code skill that lets the agent rename its own session — the programma
 ## Usage
 
 ```bash
-scripts/claude-rename.py "my-session-name"          # current session
-scripts/claude-rename.py "my-session-name" <uuid>   # a specific session
+scripts/claude-rename.sh "my-session-name"          # current session
+scripts/claude-rename.sh "my-session-name" <uuid>   # a specific session
 ```
+
+Pure POSIX `sh`, no dependencies (no Python, no jq).
 
 Without a session id it uses `$CLAUDE_SESSION_ID`, falling back to the most recently modified transcript.
 

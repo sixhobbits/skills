@@ -9,11 +9,11 @@ A Claude Code skill that lets the agent rename its own session — the programma
 ## Usage
 
 ```bash
-scripts/claude-rename.sh "my-session-name"          # current session
-scripts/claude-rename.sh "my-session-name" <uuid>   # a specific session
+node scripts/claude-rename.js "my-session-name"          # current session
+node scripts/claude-rename.js "my-session-name" <uuid>   # a specific session
 ```
 
-Pure POSIX `sh`, no dependencies (no Python, no jq).
+Node only, standard library — no npm install, no Python, no shell. Runs on macOS, Linux, and native Windows, since Node ships with Claude Code.
 
 Without a session id it uses `$CLAUDE_SESSION_ID`, falling back to the most recently modified transcript.
 
